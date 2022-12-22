@@ -184,7 +184,6 @@ class REDCompanies{
               uri: "https://accounts.accesscontrol.windows.net/" + process.env.TENANTID + "/tokens/OAuth/2",
               method: 'POST'
           }, async function (_err, _resreq, _body) {
-             console.log(await _body);
              resolve(JSON.parse(await _body).access_token);
           }); 
       })     
@@ -196,10 +195,6 @@ class REDCompanies{
   }
 }
 app.post("/api/DarAssendan/SharePoint/get", async (req,res) => {
-  console.log("MONGODB_URl :")
-  console.log(process.env.MONGODB_URl);
-  console.log("Tenent Id :")
-  console.log(process.env.TENANTID);
   var SiteName = "REDCompanies";
   var ListName = "DarAssendan";
   console.log(await REDCompanies.getAccessToken());
