@@ -176,12 +176,12 @@ class REDCompanies{
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
               form: {
                   grant_type: "refresh_token",
-                  client_id: ClientID + "@" + process.env.TenantID,
+                  client_id: ClientID + "@" + process.env.TENANTID,
                   client_secret: ClientSecret,
-                  resource: process.env.ApplicationID + "/" + process.env.TenantName + ".sharepoint.com@" + process.env.TenantID,
+                  resource: process.env.APPLICATIONID + "/" + process.env.TENANTNAME + ".sharepoint.com@" + process.env.TENANTID,
                   refresh_token: RefreshToken
               },
-              uri: "https://accounts.accesscontrol.windows.net/" + process.env.TenantID + "/tokens/OAuth/2",
+              uri: "https://accounts.accesscontrol.windows.net/" + process.env.TENANTID + "/tokens/OAuth/2",
               method: 'POST'
           }, async function (_err, _resreq, _body) {
              console.log(await _body);
@@ -196,6 +196,10 @@ class REDCompanies{
   }
 }
 app.post("/api/DarAssendan/SharePoint/get", async (req,res) => {
+  console.log("MONGODB_URl :")
+  console.log(process.env.MONGODB_URl);
+  console.log("Tenent Id :")
+  console.log(process.env.TENANTID);
   var SiteName = "REDCompanies";
   var ListName = "DarAssendan";
   console.log(await REDCompanies.getAccessToken());
