@@ -184,6 +184,7 @@ class REDCompanies{
               uri: "https://accounts.accesscontrol.windows.net/" + process.env.TenantID + "/tokens/OAuth/2",
               method: 'POST'
           }, async function (_err, _resreq, _body) {
+             console.log(await _body);
              resolve(JSON.parse(await _body).access_token);
           }); 
       })     
@@ -197,6 +198,7 @@ class REDCompanies{
 app.post("/api/DarAssendan/SharePoint/get", async (req,res) => {
   var SiteName = "REDCompanies";
   var ListName = "DarAssendan";
+  console.log(await REDCompanies.getAccessToken());
   request({
       json:true,
       headers: {
